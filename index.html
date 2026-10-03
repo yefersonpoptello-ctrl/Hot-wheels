@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HOT WHEELS GUATEMALA - Catálogo de Modelos</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Google Fonts: Montserrat & Roboto -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<!-- Font Awesome Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<script>
+tailwind.config = {
+theme: {
+extend: {
+colors: {
+hwBg: '#111111',
+hwCard: '#1E1E1E',
+hwRed: '#E31B23',
+hwYellow: '#FFD400',
+hwGreen: '#20C763',
+hwGray: '#777777',
+hwDarkGray: '#222222'
+},
+fontFamily: {
+montserrat: ['Montserrat', 'sans-serif'],
+roboto: ['Roboto', 'sans-serif']
+}
+}
+}
+}
+</script>
+
+<style>
+body {
+background-color: #111111;
+color: #FFFFFF;
+font-family: 'Roboto', sans-serif;
+}
+h1, h2, h3, h4, .font-heading {
+font-family: 'Montserrat', sans-serif;
+}
+.card-img-container {
+aspect-ratio: 4 / 5;
+overflow: hidden;
+background-color: #161616;
+}
+.card-img-container img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+transition: transform 0.3s ease;
+}
+.card-img-container:hover img {
+transform: scale(1.05);
+}
+.sold-card img {
+filter: grayscale(80%) brightness(0.7);
+}
+/* Smooth Scroll */
+html {
+scroll-behavior: smooth;
+}
+</style>
+</head>
+<body class="min-h-screen flex flex-col justify-between">
+
+<!-- BARRA DE CONFIGURACIÓN DE TELÉFONO WHATSAPP -->
+<div class="bg-hwRed text-white py-2 px-4 text-xs md:text-sm text-center font-medium shadow-md flex flex-wrap items-center justify-center gap-2 z-50 sticky top-0">
+<span><i class="fa-solid fa-gear mr-1"></i> <strong>Configuración de Ventas:</strong> Tu número de WhatsApp:</span>
+<div class="flex items-center bg-black/40 rounded px-2 py-1">
+<span class="text-hwYellow font-bold mr-1">+502</span>
+<input type="text" id="phoneInput" value="50255551234" placeholder="Ej: 50255551234" oninput="updateWhatsAppLinks()" class="bg-transparent border-none text-white text-xs md:text-sm focus:outline-none w-28 font-bold">
+</div>
+<span class="text-xs opacity-90 hidden sm:inline">(Los enlaces 'CONSULTAR' se actualizarán automáticamente)</span>
+</div>
+
+<!-- 1. ENCABEZADO / HERO BANNER -->
+<header id="inicio" class="relative w-full h-[380px] md:h-[450px] flex items-center justify-center overflow-hidden border-b-4 border-hwRed">
+<!-- Imagen de Fondo de Hot Wheels -->
+<img src="attachment_0" alt="Hot Wheels Background" class="absolute inset-0 w-full h-full object-cover">
+<!-- Capa Oscura (Overlay) -->
+<div class="absolute inset-0 bg-gradient-to-t from-hwBg via-black/75 to-black/80"></div>
+
+<!-- Contenido del Encabezado -->
+<div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
+<div class="inline-block bg-hwRed text-white font-extrabold text-xs md:text-sm px-3 py-1 rounded-full uppercase tracking-wider mb-3 shadow-lg">
+🔥 Colección Exclusiva
+</div>
+<h1 class="text-3xl md:text-5xl lg:text-6xl font-black text-white tracking-tight uppercase drop-shadow-md mb-2">
+HOT WHEELS GUATEMALA
+</h1>
+<p class="text-gray-300 text-base md:text-xl font-normal max-w-2xl mx-auto mb-6">
+Catálogo de Hot Wheels básicos
+</p>
+<a href="#catalogo" class="inline-flex items-center gap-2 bg-hwRed hover:bg-red-700 text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:shadow-red-600/50 transition-all transform hover:-translate-y-0.5">
+<i class="fa-solid fa-car"></i> Ver Catálogo Disponible
+</a>
+</div>
+</header>
+
+<!-- 2. MENÚ DE NAVEGACIÓN -->
+<nav class="bg-hwDarkGray border-b border-gray-800 sticky top-[37px] z-40 shadow-xl">
+<div class="max-w-6xl mx-auto px-4 flex justify-between items-center h-14">
+<a href="#inicio" class="text-hwRed font-black text-lg tracking-wider flex items-center gap-2">
+<i class="fa-solid fa-fire text-hwYellow"></i> HW GUATE
+</a>
+
+<!-- Menú Desktop -->
+<div class="hidden md:flex space-x-6 text-sm font-bold tracking-wide">
+<a href="#inicio" class="hover:text-hwRed transition-colors">INICIO</a>
+<a href="#catalogo" class="hover:text-hwRed transition-colors">CATÁLOGO</a>
+<a href="#destacados" class="hover:text-hwRed transition-colors text-hwYellow">⭐ DESTACADOS</a>
+<a href="#vendidos" class="hover:text-hwRed transition-colors">VENDIDOS</a>
+<a href="#contacto" class="hover:text-hwRed transition-colors">CONTACTO</a>
+</div>
+
+<!-- Botón Hamburguesa Móvil -->
+<button onclick="toggleMobileMenu()" class="md:hidden text-white text-xl focus:outline-none p-2">
+<i class="fa-solid fa-bars" id="menuIcon"></i>
+</button>
+</div>
+
+<!-- Menú Desplegable Móvil -->
+<div id="mobileMenu" class="hidden md:hidden bg-black/95 border-b border-gray-800 px-4 py-3 space-y-3 font-bold text-center">
+<a href="#inicio" onclick="toggleMobileMenu()" class="block py-2 border-b border-gray-800">INICIO</a>
+<a href="#catalogo" onclick="toggleMobileMenu()" class="block py-2 border-b border-gray-800">CATÁLOGO</a>
+<a href="#destacados" onclick="toggleMobileMenu()" class="block py-2 border-b border-gray-800 text-hwYellow">⭐ DESTACADOS</a>
+<a href="#vendidos" onclick="toggleMobileMenu()" class="block py-2 border-b border-gray-800">VENDIDOS</a>
+<a href="#contacto" onclick="toggleMobileMenu()" class="block py-2">CONTACTO</a>
+</div>
+</nav>
+
+<!-- CONTENIDO PRINCIPAL -->
+<main class="max-w-6xl mx-auto px-4 py-10 w-full space-y-16">
+
+<!-- 3. SECCIÓN CATÁLOGO -->
+<section id="catalogo" class="scroll-mt-24">
+<div class="mb-8">
+<h2 class="text-3xl md:text-4xl font-black text-white flex items-center gap-3">
+<span>🚗</span> CATÁLOGO
+</h2>
+<p class="text-hwRed font-semibold text-lg mt-1">
+Modelos disponibles actualmente
+</p>
+</div>
+
+<!-- Buscador y Filtro Rápido -->
+<div class="bg-hwCard p-4 rounded-xl mb-8 flex flex-col md:flex-row gap-4 justify-between items-center border border-gray-800">
+<div class="relative w-full md:w-80">
+<i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+<input type="text" id="searchInput" onkeyup="filterCars()" placeholder="Buscar por modelo o nombre..." class="w-full bg-hwBg border border-gray-700 rounded-lg pl-10 pr-4 py-2 text-sm text-white focus:outline-none focus:border-hwRed">
+</div>
+<div class="text-xs text-gray-400 font-medium">
+Mostrando los modelos listos para entrega inmediata
+</div>
+</div>
+
+<!-- 4. TARJETAS DE HOT WHEELS (CUADRÍCULA DE 3 COLUMNAS) -->
+<div id="catalogGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+<!-- TARJETA 1 -->
+<div class="car-card bg-hwCard rounded-xl overflow-hidden border border-gray-800 hover:border-gray-700 shadow-xl flex flex-col justify-between" data-name="Nissan Skyline GT-R R34">
+<div class="card-img-container relative">
+<img src="attachment_0" alt="Nissan Skyline GT-R">
+<span class="absolute top-3 right-3 bg-black/70 backdrop-blur-md text-hwYellow font-bold text-xs px-2.5 py-1 rounded-md border border-hwYellow/30">
+J-Imports
+</span>
+</div>
+<div class="p-5 flex-grow flex flex-col justify-between">
+<div>
+<h3 class="text-xl font-extrabold text-white leading-snug">Nissan Skyline GT-R</h3>
+<p class="text-gray-400 text-xs mt-1 mb-4">Hot Wheels Basic</p>
+</div>
+<div>
+<div class="flex items-center justify-between mb-4">
+<span class="text-hwYellow font-black text-2xl">Q35.00</span>
+<span class="text-hwGreen font-bold text-xs bg-hwGreen/10 border border-hwGreen/30 px-2.5 py-1 rounded-full flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-hwGreen animate-pulse"></span> DISPONIBLE
+</span>
+</div>
+<a href="#" data-car="Nissan Skyline GT-R" data-price="Q35.00" class="wa-btn w-full bg-[#20C763] hover:bg-[#1bb056] text-white font-bold py-3 px-4 rounded-lg flex items-center justify-center gap-2 shadow-md transition-all">
+<i class="fa-brands fa-whatsapp text-lg"></i> 📲 CONSULTAR
+</a>
+</div>
+</div>
+</div>
+
+<!-- TARJETA 2 -->
+<div class="car-card bg-hwCard rounded-xl overflow-hidden border border-gray-800 hover:border-gray-700 shadow-xl flex flex-col justify-between" data-name="Toyota Supra MK4">
+<div class="card-img-container relative">
+<img src="attachment_4" alt="Toyota Supra">
+<span class="absolute top-3 right-3 bg-black/70 backdrop-blur-md text-hwYellow font-bold text-xs px-2.5 py-1 rounded-md border border-hwYellow/30">
+Then and Now
+</span>
+</div>
+<div class="p-5 flex-grow flex flex-col justify-between">
+<div>
+<h3 class="text-xl font-extrabold text-white leading-snug">Toyota Supra</h3>
+<p class="text-gray-400 text-xs mt-1 mb-4">Hot Wheels Basic</p>
+</div>
+<div>
+<div class="flex items-center justify-between mb-4">
+<span class="text-hwYellow font-black text-2xl">Q30.00</span>
+<span class="text-hwGreen font-bold text-xs bg-hwGreen/10 border border-hwGreen/30 px-2.5 py-1 rounded-full flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-hwGreen animate-pulse"></span> DISPONIBLE
+</span>
+</div>
+<a href="#" data-car="Toyota Supra" data-price="Q30.00" class="wa-btn w-full bg-[#20C763] hover:bg-[#1bb056] text-white font-bold py-3 px-4 rounded-lg flex items-center justify-center gap-2 shadow-md transition-all">
+<i class="fa-brands fa-whatsapp text-lg"></i> 📲 CONSULTAR
+</a>
+</div>
+</div>
+</div>
+
+<!-- TARJETA 3 -->
+<div class="car-card bg-hwCard rounded-xl overflow-hidden border border-gray-800 hover:border-gray-700 shadow-xl flex flex-col justify-between" data-name="Honda Civic Type R">
+<div class="card-img-container relative">
+<img src="attachment_2" alt="Honda Civic Type R">
+<span class="absolute top-3 right-3 bg-black/70 backdrop-blur-md text-hwYellow font-bold text-xs px-2.5 py-1 rounded-md border border-hwYellow/30">
+Hatchbacks
+</span>
+</div>
+<div class="p-5 flex-grow flex flex-col justify-between">
+<div>
+<h3 class="text-xl font-extrabold text-white leading-snug">Honda Civic Type R</h3>
+<p class="text-gray-400 text-xs mt-1 mb-4">Hot Wheels Basic</p>
+</div>
+<div>
+<div class="flex items-center justify-between mb-4">
+<span class="text-hwYellow font-black text-2xl">Q32.00</span>
+<span class="text-hwGreen font-bold text-xs bg-hwGreen/10 border border-hwGreen/30 px-2.5 py-1 rounded-full flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-hwGreen animate-pulse"></span> DISPONIBLE
+</span>
+</div>
+<a href="#" data-car="Honda Civic Type R" data-price="Q32.00" class="wa-btn w-full bg-[#20C763] hover:bg-[#1bb056] text-white font-bold py-3 px-4 rounded-lg flex items-center justify-center gap-2 shadow-md transition-all">
+<i class="fa-brands fa-whatsapp text-lg"></i> 📲 CONSULTAR
+</a>
+</div>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- 5. SECCIÓN DESTACADOS -->
+<section id="destacados" class="scroll-mt-24 bg-gradient-to-b from-hwCard to-hwBg p-6 md:p-8 rounded-2xl border border-hwYellow/30">
+<div class="mb-8 flex items-center justify-between flex-wrap gap-4">
+<div>
+<h2 class="text-3xl md:text-4xl font-black text-white flex items-center gap-3">
+<span>⭐</span> MODELOS DESTACADOS
+</h2>
+<p class="text-hwYellow font-medium text-sm mt-1">
+Los más buscados por coleccionistas
+</p>
+</div>
+<span class="bg-hwYellow text-black font-extrabold text-xs px-3 py-1.5 rounded-md uppercase tracking-wider">
+Top Selección
+</span>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+<!-- DESTACADO 1 -->
+<div class="bg-hwBg rounded-xl overflow-hidden border-2 border-hwYellow/40 shadow-2xl flex flex-col md:flex-row">
+<div class="md:w-1/2 card-img-container">
+<img src="attachment_1" alt="Mazda RX-7">
+</div>
+<div class="md:w-1/2 p-6 flex flex-col justify-between">
+<div>
+<span class="inline-block bg-hwRed text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase mb-2">
+Pieza de Colección
+</span>
+<h3 class="text-2xl font-extrabold text-white">Mazda RX-7</h3>
+<p class="text-gray-400 text-xs mt-1">Hot Wheels Basic Series</p>
+<p class="text-gray-300 text-sm mt-3 leading-relaxed">
+Edición con detalles de pintura de alta fidelidad.
+</p>
+</div>
+<div class="mt-6">
+<div class="flex items-center justify-between mb-3">
+<span class="text-hwYellow font-black text-3xl">Q40.00</span>
+<span class="text-hwGreen font-bold text-xs bg-hwGreen/10 border border-hwGreen/30 px-2.5 py-1 rounded-full">
+🟢 DISPONIBLE
+</span>
+</div>
+<a href="#" data-car="Mazda RX-7 (Destacado)" data-price="Q40.00" class="wa-btn w-full bg-[#20C763] hover:bg-[#1bb056] text-white font-bold py-3 px-4 rounded-lg flex items-center justify-center gap-2 shadow-lg transition-all">
+<i class="fa-brands fa-whatsapp text-lg"></i> 📲 CONSULTAR
+</a>
+</div>
+</div>
+</div>
+
+<!-- DESTACADO 2 -->
+<div class="bg-hwBg rounded-xl overflow-hidden border-2 border-hwYellow/40 shadow-2xl flex flex-col md:flex-row">
+<div class="md:w-1/2 card-img-container">
+<img src="attachment_3" alt="Porsche 911 GT3">
+</div>
+<div class="md:w-1/2 p-6 flex flex-col justify-between">
+<div>
+<span class="inline-block bg-hwRed text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase mb-2">
+Super Deportivo
+</span>
+<h3 class="text-2xl font-extrabold text-white">Porsche 911 GT3</h3>
+<p class="text-gray-400 text-xs mt-1">Hot Wheels Basic Series</p>
+<p class="text-gray-300 text-sm mt-3 leading-relaxed">
+Color de edición limitada con llantas detalladas.
+</p>
+</div>
+<div class="mt-6">
+<div class="flex items-center justify-between mb-3">
+<span class="text-hwYellow font-black text-3xl">Q38.00</span>
+<span class="text-hwGreen font-bold text-xs bg-hwGreen/10 border border-hwGreen/30 px-2.5 py-1 rounded-full">
+🟢 DISPONIBLE
+</span>
+</div>
+<a href="#" data-car="Porsche 911 GT3 (Destacado)" data-price="Q38.00" class="wa-btn w-full bg-[#20C763] hover:bg-[#1bb056] text-white font-bold py-3 px-4 rounded-lg flex items-center justify-center gap-2 shadow-lg transition-all">
+<i class="fa-brands fa-whatsapp text-lg"></i> 📲 CONSULTAR
+</a>
+</div>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- 6. SECCIÓN VENDIDOS -->
+<section id="vendidos" class="scroll-mt-24">
+<div class="mb-8">
+<h2 class="text-3xl md:text-4xl font-black text-white flex items-center gap-3">
+<span>📦</span> VENDIDOS
+</h2>
+<p class="text-gray-400 font-medium text-sm mt-1">
+Modelos agotados recientemente
+</p>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+<!-- TARJETA VENDIDA 1 -->
+<div class="sold-card bg-hwCard/70 rounded-xl overflow-hidden border border-gray-800 shadow-md">
+<div class="card-img-container relative">
+<img src="attachment_0" alt="Ford Mustang GT">
+<div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+<span class="bg-hwRed text-white font-black text-sm px-4 py-1.5 rounded-full shadow-lg border border-white/20 tracking-wider">
+🔴 VENDIDO
+</span>
+</div>
+</div>
+<div class="p-5">
+<h3 class="text-lg font-bold text-gray-300">Ford Mustang GT '67</h3>
+<p class="text-gray-500 text-xs mt-0.5">Hot Wheels Basic</p>
+<div class="mt-4 pt-3 border-t border-gray-800 flex items-center justify-between text-gray-500 text-sm font-medium">
+<span>Q35.00</span>
+<span class="text-xs italic text-gray-500">Agotado</span>
+</div>
+</div>
+</div>
+
+<!-- TARJETA VENDIDA 2 -->
+<div class="sold-card bg-hwCard/70 rounded-xl overflow-hidden border border-gray-800 shadow-md">
+<div class="card-img-container relative">
+<img src="attachment_4" alt="Dodge Challenger">
+<div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+<span class="bg-hwRed text-white font-black text-sm px-4 py-1.5 rounded-full shadow-lg border border-white/20 tracking-wider">
+🔴 VENDIDO
+</span>
+</div>
+</div>
+<div class="p-5">
+<h3 class="text-lg font-bold text-gray-300">Dodge Challenger SRT</h3>
+<p class="text-gray-500 text-xs mt-0.5">Hot Wheels Basic</p>
+<div class="mt-4 pt-3 border-t border-gray-800 flex items-center justify-between text-gray-500 text-sm font-medium">
+<span>Q30.00</span>
+<span class="text-xs italic text-gray-500">Agotado</span>
+</div>
+</div>
+</div>
+
+<!-- TARJETA VENDIDA 3 -->
+<div class="sold-card bg-hwCard/70 rounded-xl overflow-hidden border border-gray-800 shadow-md">
+<div class="card-img-container relative">
+<img src="attachment_2" alt="Chevrolet Corvette C8">
+<div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+<span class="bg-hwRed text-white font-black text-sm px-4 py-1.5 rounded-full shadow-lg border border-white/20 tracking-wider">
+🔴 VENDIDO
+</span>
+</div>
+</div>
+<div class="p-5">
+<h3 class="text-lg font-bold text-gray-300">Chevrolet Corvette C8.R</h3>
+<p class="text-gray-500 text-xs mt-0.5">Hot Wheels Basic</p>
+<div class="mt-4 pt-3 border-t border-gray-800 flex items-center justify-between text-gray-500 text-sm font-medium">
+<span>Q35.00</span>
+<span class="text-xs italic text-gray-500">Agotado</span>
+</div>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- 7. SECCIÓN CONTACTO -->
+<section id="contacto" class="scroll-mt-24 bg-gradient-to-r from-hwRed/20 via-hwCard to-hwRed/20 p-8 md:p-12 rounded-2xl border border-hwRed/50 text-center relative overflow-hidden shadow-2xl">
+<div class="max-w-2xl mx-auto space-y-4">
+<div class="inline-block p-3 bg-hwRed/20 rounded-full mb-2">
+<i class="fa-brands fa-whatsapp text-4xl text-hwGreen"></i>
+</div>
+<h2 class="text-2xl md:text-4xl font-black text-white uppercase tracking-tight">
+¿ENCONTRASTE UN MODELO QUE TE GUSTA?
+</h2>
+<p class="text-gray-300 text-base md:text-lg">
+Escríbeme por WhatsApp para consultar disponibilidad, precio y entregas en Guatemala.
+</p>
+<div class="pt-4">
+<a id="mainContactBtn" href="#" class="inline-flex items-center gap-3 bg-[#20C763] hover:bg-[#1bb056] text-white font-extrabold text-lg px-8 py-4 rounded-xl shadow-xl transition-all transform hover:scale-105">
+<i class="fa-brands fa-whatsapp text-2xl"></i> 📲 HABLAR POR WHATSAPP
+</a>
+</div>
+</div>
+</section>
+
+</main>
+
+<!-- 8. PIE DE PÁGINA (FOOTER) -->
+<footer class="bg-black border-t border-gray-800 py-8 px-4 text-center mt-12">
+<div class="max-w-6xl mx-auto space-y-3">
+<p class="text-white font-extrabold tracking-widest text-lg">
+HOT WHEELS GUATEMALA
+</p>
+<p class="text-gray-400 text-xs md:text-sm">
+Catálogo de modelos Hot Wheels • Coleccionables Básicos y Especiales
+</p>
+<div class="flex items-center justify-center gap-4 text-gray-500 text-xs pt-2">
+<span>📍 Guatemala</span>
+<span>•</span>
+<span>📲 WhatsApp Directo</span>
+</div>
+<p class="text-gray-600 text-[11px] pt-4 border-t border-gray-900">
+© Hot Wheels Guatemala. Las marcas registradas e imágenes pertenecen a sus respectivos dueños.
+</p>
+</div>
+</footer>
+
+<!-- LÓGICA DE JAVASCRIPT -->
+<script>
+// Función para alternar el menú en móviles
+function toggleMobileMenu() {
+const menu = document.getElementById('mobileMenu');
+const icon = document.getElementById('menuIcon');
+menu.classList.toggle('hidden');
+if (menu.classList.contains('hidden')) {
+icon.classList.remove('fa-xmark');
+icon.classList.add('fa-bars');
+} else {
+icon.classList.remove('fa-bars');
+icon.classList.add('fa-xmark');
+}
+}
+
+// Función para actualizar los enlaces de WhatsApp dinámicamente según el número ingresado
+function updateWhatsAppLinks() {
+let rawPhone = document.getElementById('phoneInput').value.trim();
+// Eliminar caracteres no numéricos
+let cleanPhone = rawPhone.replace(/\D/g, '');
+
+if (!cleanPhone) {
+cleanPhone = "50255551234";
+}
+
+// Actualizar botones de tarjetas
+const buttons = document.querySelectorAll('.wa-btn');
+buttons.forEach(btn => {
+const carName = btn.getAttribute('data-car');
+const price = btn.getAttribute('data-price');
+const message = encodeURIComponent(Hola, estoy interesado en el Hot Wheels ${carName} (${price}) del catálogo. ¿Todavía está disponible?);
+btn.href = https://wa.me/${cleanPhone}?text=${message};
+btn.target = "_blank";
+});
+
+// Actualizar botón de contacto general
+const mainBtn = document.getElementById('mainContactBtn');
+if (mainBtn) {
+const generalMsg = encodeURIComponent("Hola, vi su catálogo de Hot Wheels y quisiera consultar por algunos modelos.");
+mainBtn.href = https://wa.me/${cleanPhone}?text=${generalMsg};
+mainBtn.target = "_blank";
+}
+}
+
+// Función de filtrado en tiempo real en la barra de búsqueda
+function filterCars() {
+const input = document.getElementById('searchInput').value.toLowerCase();
+const cards = document.querySelectorAll('.car-card');
+
+cards.forEach(card => {
+const name = card.getAttribute('data-name').toLowerCase();
+if (name.includes(input)) {
+card.style.display = "flex";
+} else {
+card.style.display = "none";
+}
+});
+}
+
+// Inicializar los enlaces al cargar la página
+document.addEventListener('DOMContentLoaded', updateWhatsAppLinks);
+</script>
+</body>
+</html>
